@@ -1,3 +1,94 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "airbnb",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "plugins": ["react", "prettier", "@typescript-eslint"],
+  "root": true,
+  "rules": {
+    "prettier/prettier": "error",
+    "import/no-anonymous-default-export": "error",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".ts", ".tsx"]
+      }
+    ],
+    "no-restricted-syntax": ["error", "WithStatement"],
+    "react/jsx-closing-bracket-location": [0],
+    "react/jsx-props-no-spreading": [
+      2,
+      {
+        "exceptions": ["Component"]
+      }
+    ],
+    "react/prop-types": ["error"],
+    "react-hooks/exhaustive-deps": "error",
+    "quotes": ["error", "double"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "@next/next/no-img-element": "off",
+    "react/require-default-props": "off", // TODO: Remove after deleting PropTypes
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "controlComponents": [
+          "Field" // from Formik
+        ],
+        "depth": 1
+      }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ],
+    // This is a bug: https://github.com/typescript-eslint/tslint-to-eslint-config/issues/856
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"]
+  },
+  "globals": {
+    "React": "writable"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    },
+    "requireConfigFile": false,
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "ignorePatterns": ["*.config.js"]
 }

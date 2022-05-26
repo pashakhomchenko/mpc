@@ -1,9 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Contact from "../components/Contact";
-import Heading from "../components/Heading";
 
-const Home: NextPage = () => {
+const Blog: NextPage = () => {
   return (
     <div>
       <Head>
@@ -13,11 +11,10 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="min-h-screen bg-white p-10">
-        <Heading />
-        <Contact />
+        <h1>BLOG</h1>
       </main>
     </div>
   );
 };
 
-export default Home;
+export default Blog;
