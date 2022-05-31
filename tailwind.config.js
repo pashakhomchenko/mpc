@@ -13,6 +13,7 @@ module.exports = {
     },
     fontFamily: {
       Michroma: "Michroma",
+      Roboto: ["Roboto", "sans-serif"],
     },
   },
   plugins: [],
