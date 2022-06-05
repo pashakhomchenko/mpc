@@ -16,7 +16,7 @@ const Experience = ({
   description,
 }: ExperienceProps) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-4">
       <h3>
         {name} <br /> {position} <br /> {location} <br /> {dates}
       </h3>

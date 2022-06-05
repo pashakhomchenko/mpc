@@ -1,10 +1,5 @@
-import {
-  FaTwitter,
-  FaMailBulk,
-  FaSoundcloud,
-  FaGithub,
-  FaLinkedin,
-} from "react-icons/fa";
+import { FaTwitter, FaSoundcloud, FaGithub, FaLinkedin } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 interface BoxProps {
   children: React.ReactNode;
@@ -33,7 +28,7 @@ const Contact = () => {
       </Box>
       <Box>
         <a href="mailto:ahssssap@gmail.com" target="_blank">
-          <FaMailBulk size={30} />
+          <MdEmail size={30} />
         </a>
       </Box>
       <Box>

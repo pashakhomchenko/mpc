@@ -7,7 +7,7 @@ interface PictureProps {
 
 const Picture = ({ src, title }: PictureProps) => {
   return (
-    <div className="flex flex-col break-words my-4">
+    <div className="flex flex-col break-words my-4 w-fit">
       <Image src={src} alt={title} />
       {title}
     </div>
