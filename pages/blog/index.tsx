@@ -10,8 +10,8 @@ const Blog: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen bg-white p-10">
-        <h1>BLOG</h1>
+      <main className="h-screen w-screen font-Michroma flex justify-center items-center">
+        <h1>Blog is under construction</h1>
       </main>
     </div>
   );

@@ -10,13 +10,14 @@ module.exports = {
       "gray-light": "#DEDFE3",
       black: "#090809",
       red: "#F40000",
+      blue: "rgb(13,36,60)",
     },
     fontFamily: {
       Michroma: "Michroma",
       Roboto: ["Roboto", "sans-serif"],
     },
     screens: {
-      xs: "500px",
+      xs: "320px",
       sm: "640px",
       md: "768px",
       lg: "1024px",

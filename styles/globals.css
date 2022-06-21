@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bar: 629px;
+  --full: calc(var(--bar) + 32px);
+  --top: calc(var(--bar) - 520px);
+}
+
 html,
 body {
   padding: 0;
@@ -18,4 +24,13 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+
+  border-left: calc(40px * 0.866) solid #969696;
 }
