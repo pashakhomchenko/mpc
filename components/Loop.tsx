@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDrag } from "react-dnd";
 
 interface LoopProps {

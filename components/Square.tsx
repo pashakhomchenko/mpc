@@ -3,12 +3,19 @@ import { useDrag } from "react-dnd";
 import { useEffect, useRef, useState } from "react";
 import { Howl, Howler } from "howler";
 
+enum Status {
+  empty = "empty",
+  inactive = "inactive",
+  paused = "paused",
+  playing = "playing",
+}
+
 const Square = (id: number) => {
   const [src, setSrc] = useState("");
   const [sound, setSound] = useState(
     new Howl({ src: ["audio/silence.mp3"], loop: true })
   );
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [status, setStatus] = useState(Status.empty);
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "Loop",
@@ -16,47 +23,56 @@ const Square = (id: number) => {
       isOver: monitor.isOver(),
     }),
     drop: (item: any) => {
+      setStatus(Status.inactive);
       setSrc(item.src);
       return { id: id };
     },
   }));
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: "Loop",
-    item: () => ({ src: src }),
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
+  const [{ isDragging }, drag] = useDrag(
+    () => ({
+      type: "Loop",
+      item: () => ({ src: src }),
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
+      canDrag: () => src !== "",
+      end: (item, monitor) => {
+        if (monitor.didDrop() && monitor.getDropResult().id !== id) {
+          setStatus(Status.empty);
+          setSrc("");
+        }
+      },
     }),
-    canDrag: () => src !== "",
-    end: (item, monitor) => { if (monitor.didDrop() && monitor.getDropResult().id !== id) { setSrc("") } },
-  }), [src]);
+    [src] // this is why src is updated in item
+  );
   const ref = useRef<HTMLDivElement>(null);
-  drag(drop(ref))
+  drag(drop(ref));
 
   useEffect(() => {
+    sound.fade(1, 0, 10);
+    setTimeout(() => {
+      sound.stop();
+    }, 10);
     if (src !== "") {
-      sound.fade(1, 0, 10);
-      setTimeout(() => {
-        sound.stop();
-      }, 10);
-      setIsPlaying(false);
+      setStatus(Status.inactive);
       setSound(new Howl({ src: [src], loop: true }));
     }
   }, [src]);
 
   const HandleClick = () => {
-    if (src !== "") {
-      if (isPlaying) {
+    if (status !== Status.empty) {
+      if (status === Status.playing) {
         sound.fade(1, 0, 10);
         setTimeout(() => {
           sound.stop();
         }, 10);
-        setIsPlaying(false);
+        setStatus(Status.inactive);
         console.log("pause");
         console.log(sound.duration());
       } else {
         sound.play();
         sound.fade(0, 1, 10);
-        setIsPlaying(true);
+        setStatus(Status.playing);
         console.log("play");
       }
     }
@@ -66,7 +82,9 @@ const Square = (id: number) => {
     <div
       ref={ref}
       className={`w-24 h-24 drop-shadow-lg truncate text-white text-xs p-2 select-none 
-      ${src !== "" ? "bg-blue" : "bg-gray-dark"} ${isPlaying ? "bg-red" : ""} ${isOver ? "opacity-50" : ""} `}
+      ${status !== Status.empty ? "bg-blue" : "bg-gray-dark"} 
+      ${status === Status.playing ? "bg-red" : ""} 
+      ${isOver ? "opacity-50" : ""} `}
       onClick={() => HandleClick()}
     >
       {src.split("/").pop()}
