@@ -1,9 +1,22 @@
 import Square from "./Square";
+import { Status } from "./Controller";
 
-const Grid = () => {
+interface GridProps {
+  status: Array<Status>;
+  changeStatus: (id: number, newStatus: Status) => void;
+}
+
+const Grid = (props: GridProps) => {
   return (
     <div className="grid grid-cols-4 grid-rows-4 gap-6 bg-gray-light p-8">
-      {Array.from({ length: 16 }, (x, i) => i).map((_, i) => (<Square key={i} id={i} />))}
+      {props.status.map((status, i) => (
+        <Square
+          key={i}
+          id={i}
+          status={status}
+          changeStatus={props.changeStatus}
+        />
+      ))}
     </div>
   );
 };

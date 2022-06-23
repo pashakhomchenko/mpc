@@ -2,13 +2,27 @@ import Folder from "./Folder";
 import Picture from "./Picture";
 import Experience from "./Experience";
 import Loop from "./Loop";
+import { useDrop } from "react-dnd";
 import Retrato_de_Juan_Pareja from "/public/images/Retrato_de_Juan_Pareja_by_Diego_Velázquez.jpg";
 import The_Trinity from "/public/images/The_Trinity_by_Andrei_Rublev.jpg";
 import Melencolia from "/public/images/Melencolia_I_by_Albrecht_Dürer.jpg";
 
 const FileBrowser = () => {
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: "Loop",
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
+    drop: (item: any) => {
+      return { id: -1 };
+    },
+  }));
+
   return (
-    <div className="font-Michroma text-base grow border-2 border-black py-4 px-2 overflow-scroll">
+    <div
+      ref={drop}
+      className="font-Michroma text-base grow border-2 border-black py-4 px-2 overflow-scroll"
+    >
       <Folder name="about">learner | builder | producer | CS @ Umich</Folder>
       <Folder name="loops">
         <Loop src="audio/melodies/Alive.wav" />

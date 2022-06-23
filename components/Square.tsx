@@ -2,20 +2,19 @@ import { useDrop } from "react-dnd";
 import { useDrag } from "react-dnd";
 import { useEffect, useRef, useState } from "react";
 import { Howl, Howler } from "howler";
+import { Status } from "./Controller";
 
-enum Status {
-  empty = "empty",
-  inactive = "inactive",
-  paused = "paused",
-  playing = "playing",
+interface SquareProps {
+  id: number;
+  status: Status;
+  changeStatus: (id: number, newStatus: Status) => void;
 }
 
-const Square = (id: number) => {
+const Square = (props: SquareProps) => {
   const [src, setSrc] = useState("");
   const [sound, setSound] = useState(
     new Howl({ src: ["audio/silence.mp3"], loop: true })
   );
-  const [status, setStatus] = useState(Status.empty);
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "Loop",
@@ -23,22 +22,22 @@ const Square = (id: number) => {
       isOver: monitor.isOver(),
     }),
     drop: (item: any) => {
-      setStatus(Status.inactive);
+      props.changeStatus(props.id, Status.inactive);
       setSrc(item.src);
-      return { id: id };
+      return { id: props.id };
     },
   }));
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: "Loop",
-      item: () => ({ src: src }),
+      item: () => ({ src: src, seek: sound.seek() }),
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
       }),
       canDrag: () => src !== "",
       end: (item, monitor) => {
-        if (monitor.didDrop() && monitor.getDropResult().id !== id) {
-          setStatus(Status.empty);
+        if (monitor.didDrop() && monitor.getDropResult().id !== props.id) {
+          props.changeStatus(props.id, Status.empty);
           setSrc("");
         }
       },
@@ -54,26 +53,33 @@ const Square = (id: number) => {
       sound.stop();
     }, 10);
     if (src !== "") {
-      setStatus(Status.inactive);
+      props.changeStatus(props.id, Status.inactive);
       setSound(new Howl({ src: [src], loop: true }));
     }
   }, [src]);
 
-  const HandleClick = () => {
-    if (status !== Status.empty) {
-      if (status === Status.playing) {
+  useEffect(() => {
+    if (props.status !== Status.empty) {
+      if (props.status === Status.playing) {
+        sound.play();
+        sound.fade(0, 1, 10);
+        console.log("play");
+      } else {
         sound.fade(1, 0, 10);
         setTimeout(() => {
           sound.stop();
         }, 10);
-        setStatus(Status.inactive);
         console.log("pause");
-        console.log(sound.duration());
+      }
+    }
+  }, [props.status]);
+
+  const HandleClick = () => {
+    if (props.status !== Status.empty) {
+      if (props.status === Status.playing) {
+        props.changeStatus(props.id, Status.inactive);
       } else {
-        sound.play();
-        sound.fade(0, 1, 10);
-        setStatus(Status.playing);
-        console.log("play");
+        props.changeStatus(props.id, Status.playing);
       }
     }
   };
@@ -81,9 +87,10 @@ const Square = (id: number) => {
   return (
     <div
       ref={ref}
-      className={`w-24 h-24 drop-shadow-lg truncate text-white text-xs p-2 select-none 
-      ${status !== Status.empty ? "bg-blue" : "bg-gray-dark"} 
-      ${status === Status.playing ? "bg-red" : ""} 
+      className={`bg-gray-dark w-24 h-24 drop-shadow-lg truncate text-white text-xs p-2 select-none 
+      ${props.status !== Status.empty ? "bg-blue" : ""} 
+      ${props.status === Status.paused ? "bg-orange" : ""}
+      ${props.status === Status.playing ? "bg-red" : ""} 
       ${isOver ? "opacity-50" : ""} `}
       onClick={() => HandleClick()}
     >

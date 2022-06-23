@@ -10,7 +10,8 @@ module.exports = {
       "gray-light": "#DEDFE3",
       black: "#090809",
       red: "#F40000",
-      blue: "rgb(13,36,60)",
+      blue: "#0d243c",
+      orange: "#FFA500",
     },
     fontFamily: {
       Michroma: "Michroma",
