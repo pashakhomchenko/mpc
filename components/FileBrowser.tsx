@@ -25,9 +25,23 @@ const FileBrowser = () => {
     >
       <Folder name="about">learner | builder | producer | CS @ Umich</Folder>
       <Folder name="loops">
-        <Loop src="audio/melodies/Alive.wav" />
-        <Loop src="audio/melodies/Dystopia.wav" />
-        <Loop src="audio/drums/drums1.wav" />
+        <Folder name="bass">
+          <Loop src="audio/bass/merciless_bass.mp3" />
+        </Folder>
+        <Folder name="chords">
+          <Loop src="audio/chords/merciless_chords.mp3" />
+        </Folder>
+        <Folder name="drums">
+          <Loop src="audio/drums/lofi2_drums.mp3" />
+          <Loop src="audio/drums/140_drums.mp3" />
+        </Folder>
+        <Folder name="leads">
+          <Loop src="audio/leads/merciless_flute.mp3" />
+          <Loop src="audio/leads/merciless_lead.mp3" />
+        </Folder>
+        <Folder name="melodies">
+          <Loop src="audio/melodies/lofi2.mp3" />
+        </Folder>
       </Folder>
       <Folder name="experience">
         <Experience

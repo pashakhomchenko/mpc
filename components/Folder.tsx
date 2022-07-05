@@ -11,7 +11,10 @@ const Folder = ({ name, children }: FolderProps) => {
   const [open, setOpen] = useState(false);
   return (
     <React.Fragment>
-      <h2 className="flex items-center w-fit" onClick={() => setOpen(!open)}>
+      <h2
+        className="flex items-center w-fit select-none"
+        onClick={() => setOpen(!open)}
+      >
         {open ? <GoTriangleDown /> : <GoTriangleRight />}
         <AiOutlineFolder size={25} className="mr-1" />
         {name}

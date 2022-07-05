@@ -32,5 +32,5 @@ a {
   border-top: 20px solid transparent;
   border-bottom: 20px solid transparent;
 
-  border-left: calc(40px * 0.866) solid #969696;
+  border-left-width: calc(40px * 0.866);
 }

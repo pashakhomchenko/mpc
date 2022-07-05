@@ -5,20 +5,23 @@ interface LoopProps {
 }
 
 const Loop = ({ src }: LoopProps) => {
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: "Loop",
-    item: () => ({ src: src }),
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
+  const [{ isDragging }, drag] = useDrag(
+    () => ({
+      type: "Loop",
+      item: () => ({ src: src }),
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
     }),
-  }), [src]);
+    [src]
+  );
 
   return (
     <div
       ref={drag}
-      className={`w-fit`}
+      className={`cursor-grab	${isDragging ? "cursor-grabbing" : ""}`}
     >
-      {src.split("/").pop()}
+      <div>{src.split("/").pop()}</div>
     </div>
   );
 };

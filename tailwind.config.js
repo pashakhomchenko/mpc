@@ -12,6 +12,7 @@ module.exports = {
       red: "#F40000",
       blue: "#0d243c",
       orange: "#FFA500",
+      green: "#00b300",
     },
     fontFamily: {
       Michroma: "Michroma",

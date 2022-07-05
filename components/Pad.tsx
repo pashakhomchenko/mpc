@@ -4,16 +4,23 @@ import { useEffect, useRef, useState } from "react";
 import { Howl, Howler } from "howler";
 import { Status } from "./Controller";
 
-interface SquareProps {
+interface PadProps {
   id: number;
   status: Status;
   changeStatus: (id: number, newStatus: Status) => void;
 }
 
-const Square = (props: SquareProps) => {
+const HowlOptions = {
+  loop: true,
+  pool: 0,
+};
+
+const FadeDuration = 50;
+
+const Pad = (props: PadProps) => {
   const [src, setSrc] = useState("");
   const [sound, setSound] = useState(
-    new Howl({ src: ["audio/silence.mp3"], loop: true })
+    new Howl({ src: ["audio/silence.mp3"], ...HowlOptions })
   );
 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -36,7 +43,10 @@ const Square = (props: SquareProps) => {
       }),
       canDrag: () => src !== "",
       end: (item, monitor) => {
-        if (monitor.didDrop() && monitor.getDropResult().id !== props.id) {
+        if (
+          monitor.didDrop() &&
+          (monitor.getDropResult() as any).id !== props.id
+        ) {
           props.changeStatus(props.id, Status.empty);
           setSrc("");
         }
@@ -48,13 +58,15 @@ const Square = (props: SquareProps) => {
   drag(drop(ref));
 
   useEffect(() => {
-    sound.fade(1, 0, 10);
+    sound.fade(1, 0, FadeDuration);
     setTimeout(() => {
       sound.stop();
-    }, 10);
+    }, FadeDuration);
+    sound.unload();
+    setSound(new Howl({ src: ["audio/silence.mp3"], ...HowlOptions }));
     if (src !== "") {
       props.changeStatus(props.id, Status.inactive);
-      setSound(new Howl({ src: [src], loop: true }));
+      setSound(new Howl({ src: [src], ...HowlOptions }));
     }
   }, [src]);
 
@@ -62,13 +74,13 @@ const Square = (props: SquareProps) => {
     if (props.status !== Status.empty) {
       if (props.status === Status.playing) {
         sound.play();
-        sound.fade(0, 1, 10);
+        sound.fade(0, 1, FadeDuration);
         console.log("play");
       } else {
-        sound.fade(1, 0, 10);
+        sound.fade(1, 0, FadeDuration);
         setTimeout(() => {
           sound.stop();
-        }, 10);
+        }, FadeDuration);
         console.log("pause");
       }
     }
@@ -99,4 +111,4 @@ const Square = (props: SquareProps) => {
   );
 };
 
-export default Square;
+export default Pad;
