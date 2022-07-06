@@ -101,8 +101,8 @@ const Pad = (props: PadProps) => {
       ref={ref}
       className={`bg-gray-dark w-24 h-24 drop-shadow-lg truncate text-white text-xs p-2 select-none 
       ${props.status !== Status.empty ? "bg-blue" : ""} 
-      ${props.status === Status.paused ? "bg-orange" : ""}
-      ${props.status === Status.playing ? "bg-red" : ""} 
+      ${props.status === Status.paused ? "bg-red" : ""}
+      ${props.status === Status.playing ? "bg-green" : ""} 
       ${isOver ? "opacity-50" : ""} `}
       onClick={() => HandleClick()}
     >

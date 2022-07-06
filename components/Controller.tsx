@@ -13,44 +13,40 @@ const Controller = () => {
   const [status, setStatus] = useState(
     Array.from({ length: 16 }, (_, i) => Status.empty)
   );
-  /* /* const [stagedStatus, setStagedStatus] = useState(
-    Array.from({ length: 16 }, (_, i) => Status.empty)
-  ); */
   const [isPlaying, setIsPlaying] = useState(false);
 
-  /* useEffect(() => {
+  useEffect(() => {
     if (isPlaying) {
       const interval = setInterval(() => {
-        console.log(stagedStatus.join(","));
-        console.log(status.join(","));
-        if (stagedStatus.join(",") !== status.join(",")) {
-          setStatus(() => {
-            return [...stagedStatus];
-          });
-          console.log("pushed staged status");
-        }
+        const timer = new Event("timer");
+        dispatchEvent(timer);
       }, 6857);
 
       return () => clearInterval(interval);
     }
-  }, [isPlaying, status, stagedStatus]); */
+  }, [isPlaying]);
+
+  const setNewStatus = (id: number, newStatus: Status) => {
+    setStatus((oldStatus) => {
+      return [...oldStatus.slice(0, id), newStatus, ...oldStatus.slice(id + 1)];
+    });
+  };
 
   const changeStatus = (id: number, newStatus: Status) => {
     if (!isPlaying && newStatus === Status.playing) {
       setIsPlaying(true);
+      setNewStatus(id, newStatus);
     }
-    /* if (
+    if (
       status[id] === Status.empty ||
       status[id] === Status.playing ||
       newStatus === Status.empty
-    ) { */
-    setStatus((oldStatus) => {
-      return [...oldStatus.slice(0, id), newStatus, ...oldStatus.slice(id + 1)];
-    });
-    /*  }
-    setStagedStatus((oldStatus) => {
-      return [...oldStatus.slice(0, id), newStatus, ...oldStatus.slice(id + 1)];
-    }); */
+    ) {
+      setNewStatus(id, newStatus);
+    } else {
+      addEventListener("timer", () => setNewStatus(id, newStatus));
+    }
+    removeEventListener("timer", () => setNewStatus(id, newStatus));
   };
 
   const play = () => {
