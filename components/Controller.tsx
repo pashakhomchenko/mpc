@@ -64,6 +64,7 @@ const Controller = () => {
         changeStatus={changeStatus}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
+        play={play}
       />
     </React.Fragment>
   );

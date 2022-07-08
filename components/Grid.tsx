@@ -6,6 +6,7 @@ interface GridProps {
   changeStatus: (id: number, newStatus: Status) => void;
   isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  play: () => void;
 }
 
 const Grid = (props: GridProps) => {
@@ -19,6 +20,7 @@ const Grid = (props: GridProps) => {
           changeStatus={props.changeStatus}
           isPlaying={props.isPlaying}
           setIsPlaying={props.setIsPlaying}
+          play={props.play}
         />
       ))}
     </div>

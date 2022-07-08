@@ -10,6 +10,7 @@ interface PadProps {
   changeStatus: (id: number, newStatus: Status) => void;
   isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  play: () => void;
 }
 
 const HowlOptions = {
@@ -62,29 +63,34 @@ const Pad = (props: PadProps) => {
   drag(drop(ref));
 
   useEffect(() => {
-    sound.fade(1, 0, FadeDuration);
-    setTimeout(() => {
-      sound.stop();
-    }, FadeDuration);
-    sound.unload();
-    setIsPlaying(false);
-    if (src !== "") {
-      props.changeStatus(props.id, Status.inactive);
-      setSound(new Howl({ src: [src], ...HowlOptions }));
-    }
-  }, [src]);
-
-  useEffect(() => {
-    if (props.status !== Status.empty) {
-      if (props.status === Status.playing) {
+    if (props.status === Status.empty) {
+      sound.fade(1, 0, FadeDuration);
+      setTimeout(() => {
+        sound.stop();
+      }, FadeDuration);
+      sound.unload();
+    } else {
+      if (props.status === Status.inactive) {
+        if (isPlaying) {
+          sound.fade(0, 1, FadeDuration);
+          setTimeout(() => {
+            sound.stop();
+          }, FadeDuration);
+          setIsPlaying(false);
+        } else {
+          setSound(new Howl({ src: [src], ...HowlOptions }));
+        }
+      } else if (props.status === Status.playing) {
         sound.play();
         sound.fade(0, 1, FadeDuration);
         console.log("play");
+        setIsPlaying(true);
       } else if (props.status === Status.paused) {
         sound.fade(1, 0, FadeDuration);
         setTimeout(() => {
           sound.stop();
         }, FadeDuration);
+        setIsPlaying(false);
         console.log("pause");
       }
     }
@@ -107,11 +113,12 @@ const Pad = (props: PadProps) => {
     if (props.status !== Status.empty) {
       if (props.status === Status.playing) {
         props.changeStatus(props.id, Status.inactive);
-        setIsPlaying(false);
       } else {
-        props.changeStatus(props.id, Status.staged);
+        props.isPlaying
+          ? props.changeStatus(props.id, Status.staged)
+          : props.changeStatus(props.id, Status.playing);
+        props.play();
         setIsPlaying(true);
-        props.setIsPlaying(true);
       }
     }
   };
@@ -119,7 +126,7 @@ const Pad = (props: PadProps) => {
   return (
     <div
       ref={ref}
-      className={`w-24 h-24 drop-shadow-lg truncate text-white text-xs p-2 select-none 
+      className={`w-24 h-24 drop-shadow-lg break-words text-white text-xs p-2 select-none 
       ${props.status === Status.empty ? "bg-gray-dark" : "bg-blue"} 
       ${props.status === Status.staged ? "bg-orange" : ""} 
       ${props.status === Status.paused ? "bg-red" : ""}
@@ -127,7 +134,7 @@ const Pad = (props: PadProps) => {
       ${isOver ? "opacity-50" : ""} `}
       onClick={() => HandleClick()}
     >
-      {src.split("/").pop()}
+      {src.split("/").pop()?.split(".").at(0)}
     </div>
   );
 };
