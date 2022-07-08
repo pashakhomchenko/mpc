@@ -5,9 +5,14 @@ import Playback from "../components/Playback";
 export enum Status {
   empty = "EMPTY",
   inactive = "INACTIVE",
+  staged = "STAGED",
   paused = "PAUSED",
   playing = "PLAYING",
 }
+
+const bpm = 140;
+const bars = 16;
+const quanizeTime = (60 / bpm) * bars * 1000;
 
 const Controller = () => {
   const [status, setStatus] = useState(
@@ -17,36 +22,20 @@ const Controller = () => {
 
   useEffect(() => {
     if (isPlaying) {
+      const timer = new Event("timer");
+      dispatchEvent(timer);
       const interval = setInterval(() => {
-        const timer = new Event("timer");
         dispatchEvent(timer);
-      }, 6857);
+      }, quanizeTime);
 
       return () => clearInterval(interval);
     }
   }, [isPlaying]);
 
-  const setNewStatus = (id: number, newStatus: Status) => {
+  const changeStatus = (id: number, newStatus: Status) => {
     setStatus((oldStatus) => {
       return [...oldStatus.slice(0, id), newStatus, ...oldStatus.slice(id + 1)];
     });
-  };
-
-  const changeStatus = (id: number, newStatus: Status) => {
-    if (!isPlaying && newStatus === Status.playing) {
-      setIsPlaying(true);
-      setNewStatus(id, newStatus);
-    }
-    if (
-      status[id] === Status.empty ||
-      status[id] === Status.playing ||
-      newStatus === Status.empty
-    ) {
-      setNewStatus(id, newStatus);
-    } else {
-      addEventListener("timer", () => setNewStatus(id, newStatus));
-    }
-    removeEventListener("timer", () => setNewStatus(id, newStatus));
   };
 
   const play = () => {
@@ -70,7 +59,12 @@ const Controller = () => {
   return (
     <React.Fragment>
       <Playback play={play} pause={pause} isPlaying={isPlaying} />
-      <Grid status={status} changeStatus={changeStatus} />
+      <Grid
+        status={status}
+        changeStatus={changeStatus}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+      />
     </React.Fragment>
   );
 };
