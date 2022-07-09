@@ -6,6 +6,9 @@ import { useDrop } from "react-dnd";
 import Retrato_de_Juan_Pareja from "/public/images/Retrato_de_Juan_Pareja_by_Diego_Velázquez.jpg";
 import The_Trinity from "/public/images/The_Trinity_by_Andrei_Rublev.jpg";
 import Melencolia from "/public/images/Melencolia_I_by_Albrecht_Dürer.jpg";
+import Judith from "/public/images/Judith_by_Giorgione.jpg";
+import The_Garden_of_Earthly_Delights from "/public/images/The_Garden_of_Earthly_Delights_by_Hieronymus_Bosch.jpg";
+import Project from "./Project";
 
 const FileBrowser = () => {
   const [{ isOver }, drop] = useDrop(() => ({
@@ -49,10 +52,16 @@ const FileBrowser = () => {
           position="Software Development Intern"
           location="Ann Arbor, MI"
           dates="May 2022 - August 2022"
-          description="Worked with 5 startups to solve their technical problems and improve on the product. Redeveloped frontend for web and mobile app, implemented SSO."
+          description="Working with 5 early-stage startups to solve their critical technical problems and add product value. Some of the projects include redeveloping frontend for Django web app and React Native mobile app, implementing SSO for Microsoft Word add-in and enabling subscription functionality for an action sports trick learning app both on client and server side."
         />
       </Folder>
-      <Folder name="projects"></Folder>
+      <Folder name="projects">
+        <Project
+          name="V1 Michigan"
+          link="https://v1michigan.com/"
+          description="Creating a community of ambitious student builders at Michgan"
+        />
+      </Folder>
       <Folder name="reading list"></Folder>
       <Folder name="art gallery">
         <Picture
@@ -61,6 +70,11 @@ const FileBrowser = () => {
         />
         <Picture src={The_Trinity} title="The Trinity by Andrei Rublev.jpg" />
         <Picture src={Melencolia} title="Melencolia I by Albrecht Dürer.jpg" />
+        <Picture src={Judith} title="Judith by Giorgione.jpg" />
+        <Picture
+          src={The_Garden_of_Earthly_Delights}
+          title="The Garden of Earthly Delights by Hieronymus Bosch.jpg"
+        />
       </Folder>
       <Folder name="watch list"></Folder>
     </div>
