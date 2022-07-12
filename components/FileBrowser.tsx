@@ -2,13 +2,17 @@ import Folder from "./Folder";
 import Picture from "./Picture";
 import Experience from "./Experience";
 import Loop from "./Loop";
+import Project from "./Project";
 import { useDrop } from "react-dnd";
+import { AiOutlineArrowRight } from "react-icons/ai";
 import Retrato_de_Juan_Pareja from "/public/images/Retrato_de_Juan_Pareja_by_Diego_Velázquez.jpg";
 import The_Trinity from "/public/images/The_Trinity_by_Andrei_Rublev.jpg";
 import Melencolia from "/public/images/Melencolia_I_by_Albrecht_Dürer.jpg";
 import Judith from "/public/images/Judith_by_Giorgione.jpg";
 import The_Garden_of_Earthly_Delights from "/public/images/The_Garden_of_Earthly_Delights_by_Hieronymus_Bosch.jpg";
-import Project from "./Project";
+import The_Son_of_Man from "/public/images/The_Son_of_Man_by_Rene_Magritte.jpg";
+import Girl_with_a_Pearl_Earring from "/public/images/Girl_with_a_Pearl_Earring_by_Johannes_Vermeer.jpeg";
+import { useEffect, useState } from "react";
 
 const FileBrowser = () => {
   const [{ isOver }, drop] = useDrop(() => ({
@@ -21,31 +25,64 @@ const FileBrowser = () => {
     },
   }));
 
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const { isMobile } = require("react-device-detect");
+    setIsMobile(isMobile);
+  }, []);
+
   return (
     <div
       ref={drop}
       className="font-Michroma text-base grow border-2 border-black py-4 px-2 overflow-scroll"
     >
-      <Folder name="about">learner | builder | producer | CS @ Umich</Folder>
-      <Folder name="loops">
-        <Folder name="bass">
-          <Loop src="audio/bass/merciless_bass.mp3" />
-        </Folder>
-        <Folder name="chords">
-          <Loop src="audio/chords/merciless_chords.mp3" />
-        </Folder>
-        <Folder name="drums">
-          <Loop src="audio/drums/lofi2_drums.mp3" />
-          <Loop src="audio/drums/140_drums.mp3" />
-        </Folder>
-        <Folder name="leads">
-          <Loop src="audio/leads/merciless_flute.mp3" />
-          <Loop src="audio/leads/merciless_lead.mp3" />
-        </Folder>
-        <Folder name="melodies">
-          <Loop src="audio/melodies/lofi2.mp3" />
-        </Folder>
+      <Folder name="about">
+        <div className="flex flex-col gap-3">
+          <h3>learner | builder | producer | CS @ Umich</h3>
+          {!isMobile ? (
+            <div>
+              <p>How to use the player</p>
+              <p>
+                Click on loops folder bellow, grab any loop and drop it on the
+                grid. Press on it to start playing it. Drop more loops on the
+                grid and mix them. To remove a loop just drop in onto file
+                browser. Loops will automatically sync up. You can also use
+                playback controls in the top right corner.
+              </p>
+            </div>
+          ) : (
+            <p>To get the full experience visit this website on desktop</p>
+          )}
+        </div>
       </Folder>
+      {!isMobile ? (
+        <Folder name="loops">
+          <Folder name="bass">
+            <Loop src="audio/bass/merciless_bass.mp3" />
+            <Loop src="audio/bass/manifest_bass.mp3" />
+          </Folder>
+          <Folder name="chords">
+            <Loop src="audio/chords/merciless_chords.mp3" />
+            <Loop src="audio/chords/gf_rhodes.mp3" />
+            <Loop src="audio/chords/manifest_pad.mp3" />
+          </Folder>
+          <Folder name="drums">
+            <Loop src="audio/drums/drums_1.mp3" />
+            <Loop src="audio/drums/drums_2.mp3" />
+            <Loop src="audio/drums/drums_3.mp3" />
+          </Folder>
+          <Folder name="leads">
+            <Loop src="audio/leads/merciless_flute.mp3" />
+            <Loop src="audio/leads/merciless_lead.mp3" />
+            <Loop src="audio/leads/gf_flute.mp3" />
+            <Loop src="audio/leads/manifest_keys.mp3" />
+          </Folder>
+          <Folder name="melodies">
+            <Loop src="audio/melodies/gf_pluck.mp3" />
+            <Loop src="audio/melodies/manifest_guitar.mp3" />
+          </Folder>
+        </Folder>
+      ) : null}
       <Folder name="experience">
         <Experience
           name="Desai Accelerator"
@@ -62,7 +99,7 @@ const FileBrowser = () => {
           description="Creating a community of ambitious student builders at Michgan"
         />
       </Folder>
-      <Folder name="reading list"></Folder>
+      {/* <Folder name="reading list"></Folder> */}
       <Folder name="art gallery">
         <Picture
           src={Retrato_de_Juan_Pareja}
@@ -75,8 +112,25 @@ const FileBrowser = () => {
           src={The_Garden_of_Earthly_Delights}
           title="The Garden of Earthly Delights by Hieronymus Bosch.jpg"
         />
+        <Picture
+          src={The_Son_of_Man}
+          title="The Son of Man by Rene Magritte.jpg"
+        />
+        <Picture
+          src={Girl_with_a_Pearl_Earring}
+          title="Girl with a Pearl Earring by Johannes Vermeer.jpg"
+        />
       </Folder>
-      <Folder name="watch list"></Folder>
+      <Folder name="watch list">
+        <a
+          href="https://letterboxd.com/pashakhomchenko/"
+          target="_blank"
+          className="flex gap-1 items-center w-fit"
+        >
+          <p>Letterboxd</p>
+          <AiOutlineArrowRight size={20} />
+        </a>
+      </Folder>
     </div>
   );
 };

@@ -83,7 +83,6 @@ const Pad = (props: PadProps) => {
       } else if (props.status === Status.playing) {
         sound.play();
         sound.fade(0, 1, FadeDuration);
-        console.log("play");
         setIsPlaying(true);
       } else if (props.status === Status.paused) {
         sound.fade(1, 0, FadeDuration);
@@ -91,7 +90,6 @@ const Pad = (props: PadProps) => {
           sound.stop();
         }, FadeDuration);
         setIsPlaying(false);
-        console.log("pause");
       }
     }
   }, [props.status]);

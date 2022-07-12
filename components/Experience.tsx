@@ -20,7 +20,7 @@ const Experience = ({
       <h3>
         {name} <br /> {position} <br /> {location} <br /> {dates}
       </h3>
-      {description}
+      <p>{description}</p>
     </div>
   );
 };

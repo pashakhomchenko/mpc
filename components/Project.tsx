@@ -9,12 +9,12 @@ interface ProjectProps {
 const Project = (props: ProjectProps) => {
   return (
     <div>
-      <h1 className="flex gap-2 items-center">
+      <h3 className="flex gap-2 items-center">
         {props.name}
         <a href={props.link} target="_blank">
           <AiOutlineLink size={20} />
         </a>
-      </h1>
+      </h3>
       <p>{props.description}</p>
     </div>
   );
