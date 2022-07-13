@@ -3,7 +3,7 @@ import { MdEmail } from "react-icons/md";
 
 interface BoxProps {
   children: React.ReactNode;
-  last?: boolean; // neede for the right side bordr of the box
+  last?: boolean; // need for the right side border of the box
 }
 
 const Box = ({ children, last }: BoxProps) => {

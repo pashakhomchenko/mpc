@@ -98,6 +98,16 @@ const FileBrowser = () => {
           link="https://v1michigan.com/"
           description="Creating a community of ambitious student builders at Michgan"
         />
+        <Project
+          name="Plinq"
+          link="https://github.com/Delaminer/plinq"
+          description="Personal CRM for students and professionals to manage their network and speed up email communication"
+        />
+        <Project
+          name="Architectural Styles Predictor"
+          link="https://architectural-styles-predictor.herokuapp.com/"
+          description="Upload a picture of a building and get a prediction of its architectural style. Built with PyTorch and Flask."
+        />
       </Folder>
       {/* <Folder name="reading list"></Folder> */}
       <Folder name="art gallery">

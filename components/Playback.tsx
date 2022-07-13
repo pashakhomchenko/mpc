@@ -10,12 +10,14 @@ const Playback = (props: PlaybackProps) => {
       <div className="bg-gray-light w-64 h-16 flex justify-center items-center gap-9">
         <button
           onClick={props.play}
+          name="play"
           className={`arrow-right drop-shadow-lg ${
             props.isPlaying ? "border-l-green" : "border-l-gray-dark"
           }`}
         ></button>
         <button
           onClick={props.pause}
+          name="stop"
           className={`h-10 w-10 drop-shadow-lg ${
             props.isPlaying ? "bg-gray-dark" : "bg-red"
           }`}

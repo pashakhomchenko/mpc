@@ -8,7 +8,7 @@ interface ProjectProps {
 
 const Project = (props: ProjectProps) => {
   return (
-    <div>
+    <div className="flex flex-col gap-2 my-3">
       <h3 className="flex gap-2 items-center">
         {props.name}
         <a href={props.link} target="_blank">
