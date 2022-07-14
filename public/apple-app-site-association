@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "XHCHS4MKA7.com.infinitedegrees"
+        ],
+        "components": [
+          {
+            "/": "/subscribe/*"
+          }
+        ]
+      }
+    ]
+  }
+}
