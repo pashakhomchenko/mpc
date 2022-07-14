@@ -14,7 +14,7 @@ const Subscribe = () => {
           <h1 className="text-xl">Payment was successful</h1>
           <a
             className="text-xl underline"
-            href="https://pashakhomchenko.com/subscribe?success=true"
+            href="https://infinitedegress.xyz/subscribe?success=true"
           >
             Return to the app
           </a>
