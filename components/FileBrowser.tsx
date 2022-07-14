@@ -37,23 +37,20 @@ const FileBrowser = () => {
       className="font-Michroma text-base grow border-2 border-black py-4 px-2 overflow-scroll"
     >
       <Folder name="about">
-        <div className="flex flex-col gap-3">
-          <h3>learner | builder | producer | CS @ Umich</h3>
-          {!isMobile ? (
-            <div>
-              <p>How to use the player</p>
-              <p>
-                Click on loops folder bellow, grab any loop and drop it on the
-                grid. Press on it to start playing it. Drop more loops on the
-                grid and mix them. To remove a loop just drop in onto file
-                browser. Loops will automatically sync up. You can also use
-                playback controls in the top right corner.
-              </p>
-            </div>
-          ) : (
-            <p>To get the full experience visit this website on desktop</p>
-          )}
-        </div>
+        <h3 className="mb-2">learner | builder | producer | CS @ Umich</h3>
+        {!isMobile ? (
+          <Folder name="How to use the player">
+            <p>
+              Click on loops folder bellow, grab any loop and drop it on the
+              grid. Press on it to start playing it. Drop more loops on the grid
+              and mix them. To remove a loop just drop in onto file browser.
+              Loops will automatically sync up. You can also use playback
+              controls in the top right corner.
+            </p>
+          </Folder>
+        ) : (
+          <p>To get the full experience visit this website on desktop</p>
+        )}
       </Folder>
       {!isMobile ? (
         <Folder name="loops">
