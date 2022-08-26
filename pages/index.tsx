@@ -11,7 +11,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const userAgent = ctx.req.headers["user-agent"];
   const isDesktop =
     deviceDetector.parse(userAgent || "").device?.type === "desktop";
-  console.log(isDesktop);
   return {
     props: {
       isDesktop,
