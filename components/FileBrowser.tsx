@@ -12,9 +12,12 @@ import Judith from "/public/images/Judith_by_Giorgione.jpg";
 import The_Garden_of_Earthly_Delights from "/public/images/The_Garden_of_Earthly_Delights_by_Hieronymus_Bosch.jpg";
 import The_Son_of_Man from "/public/images/The_Son_of_Man_by_Rene_Magritte.jpg";
 import Girl_with_a_Pearl_Earring from "/public/images/Girl_with_a_Pearl_Earring_by_Johannes_Vermeer.jpeg";
-import { useEffect, useState } from "react";
 
-const FileBrowser = () => {
+interface FileBrowserProps {
+  isDesktop: Boolean;
+}
+
+const FileBrowser = (props: FileBrowserProps) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "Loop",
     collect: (monitor) => ({
@@ -25,20 +28,14 @@ const FileBrowser = () => {
     },
   }));
 
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const { isMobile } = require("react-device-detect");
-    setIsMobile(isMobile);
-  }, []);
-
   return (
     <div
       ref={drop}
       className="font-Michroma text-base grow border-2 border-black py-4 px-2 overflow-scroll"
     >
       <Folder name="about">
-        <h3 className="mb-2">learner | builder | producer | CS @ Umich</h3>
-        {!isMobile ? (
+        <h3 className="mb-2">learning and having fun, CS @ Umich</h3>
+        {props.isDesktop ? (
           <Folder name="How to use the player">
             <p>
               Click on loops folder bellow, grab any loop and drop it on the
@@ -52,7 +49,7 @@ const FileBrowser = () => {
           <p>To get the full experience visit this website on desktop</p>
         )}
       </Folder>
-      {!isMobile ? (
+      {props.isDesktop ? (
         <Folder name="loops">
           <Folder name="bass">
             <Loop src="audio/bass/merciless_bass.mp3" />
@@ -86,7 +83,7 @@ const FileBrowser = () => {
           position="Software Development Intern"
           location="Ann Arbor, MI"
           dates="May 2022 - August 2022"
-          description="Working with 5 early-stage startups to solve their critical technical problems and add product value. Some of the projects include redeveloping frontend for Django web app and React Native mobile app, implementing SSO for Microsoft Word add-in and enabling subscription functionality for an action sports trick learning app both on client and server side."
+          description="Worked with 5 early-stage startups to solve their critical technical problems and add product value. Some of the projects included redeveloping frontend for Django web app and React Native mobile app, implementing SSO for Microsoft Word add-in, enabling subscription functionality by integrating with Stripe, building automated test infrastructure with Cypress and adding push notifications using Firebase Cloud Messaging."
         />
       </Folder>
       <Folder name="projects">

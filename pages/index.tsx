@@ -1,11 +1,29 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Contact from "../components/Contact";
 import Heading from "../components/Heading";
 import FileBrowser from "../components/FileBrowser";
 import Controller from "../components/Controller";
+import DeviceDetector from "device-detector-js";
 
-const Home: NextPage = () => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const deviceDetector = new DeviceDetector();
+  const userAgent = ctx.req.headers["user-agent"];
+  const isDesktop =
+    deviceDetector.parse(userAgent || "").device?.type === "desktop";
+  console.log(isDesktop);
+  return {
+    props: {
+      isDesktop,
+    },
+  };
+};
+
+interface HomeProps {
+  isDesktop: boolean;
+}
+
+const Home = (props: HomeProps) => {
   return (
     <div>
       <Head>
@@ -23,14 +41,14 @@ const Home: NextPage = () => {
         <meta name="theme-color" content="#F1F2F4"></meta>
       </Head>
 
-      <main className="font-Michroma flex p-4 min-h-[var(--full)] min-w-[320px] h-screen w-screen justify-center items-center gap-8">
-        <div className="flex flex-col h-[var(--bar)] w-full xs:max-w-xs">
+      <main className="font-Michroma flex p-4 min-h-[var(--full)] min-w-[320px] h-screen w-screen justify-center items-center gap-6">
+        <div className="flex flex-col h-[var(--bar)] w-full xs:max-w-md">
           {/* h-screen, h-full and flex enables FileBrowser to grow until the end of the page */}
           <Heading />
           <Contact />
-          <FileBrowser />
+          <FileBrowser isDesktop={props.isDesktop} />
         </div>
-        <div className="hidden lg:grid">
+        <div className={`hidden ${props.isDesktop ? "lg:grid" : "hidden"}`}>
           <Controller />
         </div>
       </main>

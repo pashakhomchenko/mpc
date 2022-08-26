@@ -1,6 +1,6 @@
 const Heading = () => {
   return (
-    <h1 className="font-Michroma text-4xl text-black">
+    <h1 className="font-Michroma text-4xl text-black select-none">
       Pasha
       <a
         href="/blog"

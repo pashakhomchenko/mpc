@@ -1,7 +1,7 @@
 import { useDrop } from "react-dnd";
 import { useDrag } from "react-dnd";
 import { useEffect, useRef, useState } from "react";
-import { Howl, Howler } from "howler";
+import { Howl } from "howler";
 import { Status } from "./Controller";
 
 interface PadProps {
