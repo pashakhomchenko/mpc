@@ -31,13 +31,10 @@ const Home = (props: HomeProps) => {
           name="Pasha Khomchenko"
           content="CS @ Umich, learning and having fun"
         />
-        <link rel="icon" href="/favicon.ico" />
         <meta
           name="viewport"
           content="width=device-width, height=device-height, initial-scale=1"
         ></meta>
-        {/* Safari tab color */}
-        <meta name="theme-color" content="#F1F2F4"></meta>
       </Head>
 
       <main className="font-Michroma flex p-4 min-h-[var(--full)] min-w-[320px] h-screen w-screen justify-center items-center gap-6">
