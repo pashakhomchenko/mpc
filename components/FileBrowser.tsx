@@ -83,7 +83,7 @@ const FileBrowser = (props: FileBrowserProps) => {
           position="Software Development Intern"
           location="Ann Arbor, MI"
           dates="May 2022 - August 2022"
-          description="Worked with 5 early-stage startups to solve their critical technical problems and add product value. Some of the projects included redeveloping frontend for Django web app and React Native mobile app, implementing SSO for Microsoft Word add-in, enabling subscription functionality by integrating with Stripe, building automated test infrastructure with Cypress and adding push notifications using Firebase Cloud Messaging."
+          description="Executed on critical technical projects for 5 early-stage startups leading to cost reductions, additional funding and first revenue. Some of the work included redeveloping frontend for Django web app and React Native mobile app, implementing SSO for Microsoft Word add-in, enabling subscription functionality by integrating with Stripe, building automated test infrastructure with Cypress and adding push notifications using Firebase Cloud Messaging."
         />
       </Folder>
       <Folder name="projects">
@@ -101,6 +101,11 @@ const FileBrowser = (props: FileBrowserProps) => {
           name="Architectural Styles Predictor"
           link="https://architectural-styles-predictor.herokuapp.com/"
           description="Upload a picture of a building and get a prediction of its architectural style. Built with PyTorch and Flask."
+        />
+        <Project
+          name="Twitter Ad Blocker"
+          link="https://chrome.google.com/webstore/detail/twitter-ad-blocker/dhlbmiajajiiploeagcijnmnfiphgmdc"
+          description="Got tired of all the garbage on Twitter and wrote a Chrome extension to block irrelevant ads, recommendations and news."
         />
       </Folder>
       {/* <Folder name="reading list"></Folder> */}
