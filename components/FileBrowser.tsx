@@ -54,26 +54,31 @@ const FileBrowser = (props: FileBrowserProps) => {
           <Folder name="bass">
             <Loop src="audio/bass/merciless_bass.mp3" />
             <Loop src="audio/bass/manifest_bass.mp3" />
+            <Loop src="audio/bass/new_year_bass.mp3" />
           </Folder>
           <Folder name="chords">
             <Loop src="audio/chords/merciless_chords.mp3" />
             <Loop src="audio/chords/gf_rhodes.mp3" />
             <Loop src="audio/chords/manifest_pad.mp3" />
+            <Loop src="audio/chords/new_year_halftime.mp3" />
           </Folder>
           <Folder name="drums">
             <Loop src="audio/drums/drums_1.mp3" />
             <Loop src="audio/drums/drums_2.mp3" />
             <Loop src="audio/drums/drums_3.mp3" />
+            <Loop src="audio/drums/drums_4.mp3" />
           </Folder>
           <Folder name="leads">
             <Loop src="audio/leads/merciless_flute.mp3" />
             <Loop src="audio/leads/merciless_lead.mp3" />
             <Loop src="audio/leads/gf_flute.mp3" />
             <Loop src="audio/leads/manifest_keys.mp3" />
+            <Loop src="audio/leads/new_year_bells_1.mp3" />
           </Folder>
           <Folder name="melodies">
             <Loop src="audio/melodies/gf_pluck.mp3" />
             <Loop src="audio/melodies/manifest_guitar.mp3" />
+            <Loop src="audio/melodies/new_year_bells_2.mp3" />
           </Folder>
         </Folder>
       ) : null}
@@ -90,22 +95,22 @@ const FileBrowser = (props: FileBrowserProps) => {
         <Project
           name="V1 Michigan"
           link="https://v1michigan.com/"
-          description="Creating a community of ambitious student builders at Michgan"
+          description="Organized V1 Startup Fair, one of the largest student-run career fairs, attracting 400+ students, 16 startups, and $7,000 in funding"
+        />
+        <Project
+          name="UMich Guide"
+          link="http://maizepages.org"
+          description="Got together with some cool Michigan builders and created a better version of UMich's club directory. Collaborated with Peervine to host a virtual club fair by leveraging connections with clubs that were interested in UMich Guide"
+        />
+        <Project
+          name="Twitter Ad Blocker"
+          link="https://chrome.google.com/webstore/detail/twitter-ad-blocker/dhlbmiajajiiploeagcijnmnfiphgmdc"
+          description="Got tired of all the garbage on Twitter and wrote a Chrome extension to block irrelevant ads, recommendations and news, which has 50+ active users"
         />
         <Project
           name="Plinq"
           link="https://github.com/Delaminer/plinq"
           description="Personal CRM for students and professionals to manage their network and speed up email communication"
-        />
-        <Project
-          name="Architectural Styles Predictor"
-          link="https://architectural-styles-predictor.herokuapp.com/"
-          description="Upload a picture of a building and get a prediction of its architectural style. Built with PyTorch and Flask."
-        />
-        <Project
-          name="Twitter Ad Blocker"
-          link="https://chrome.google.com/webstore/detail/twitter-ad-blocker/dhlbmiajajiiploeagcijnmnfiphgmdc"
-          description="Got tired of all the garbage on Twitter and wrote a Chrome extension to block irrelevant ads, recommendations and news."
         />
       </Folder>
       {/* <Folder name="reading list"></Folder> */}

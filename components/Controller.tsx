@@ -18,7 +18,7 @@ const Controller = () => {
   const [status, setStatus] = useState(
     Array.from({ length: 16 }, (_, i) => Status.empty)
   );
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
     if (isPlaying) {
