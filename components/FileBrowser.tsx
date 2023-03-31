@@ -135,6 +135,16 @@ const FileBrowser = (props: FileBrowserProps) => {
           title="Girl with a Pearl Earring by Johannes Vermeer.jpg"
         />
       </Folder>
+      <Folder name="reading">
+        <a
+          href="https://www.goodreads.com/user/show/162243956-pasha-khomchenko"
+          target="_blank"
+          className="flex gap-1 items-center w-fit"
+        >
+          <p>Goodreads</p>
+          <AiOutlineArrowRight size={20} />
+        </a>
+      </Folder>
       <Folder name="watch list">
         <a
           href="https://letterboxd.com/pashakhomchenko/"
