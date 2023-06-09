@@ -84,6 +84,13 @@ const FileBrowser = (props: FileBrowserProps) => {
       ) : null}
       <Folder name="experience">
         <Experience
+          name="Shade"
+          position="Software Engineer Intern"
+          location="Berkeley, CA"
+          dates="May 2023 - August 2023"
+          description="The file explorer for creatives - making asset management effortless."
+        />
+        <Experience
           name="Desai Accelerator"
           position="Software Development Intern"
           location="Ann Arbor, MI"
@@ -92,6 +99,16 @@ const FileBrowser = (props: FileBrowserProps) => {
         />
       </Folder>
       <Folder name="projects">
+        <Project
+          name="Alexandria"
+          link="https://alex.macrocosm.so/download"
+          description="Working on creating and open-sourcing pipelines and embeddings of the most important datasets out there. Accelerating progress."
+        />
+        <Project
+          name="Scribe"
+          link="https://www.tryscribe.world/"
+          description="Designed and developed from scratch an AI note-taker that creates intelligent summaries for your meetings."
+        />
         <Project
           name="V1 Michigan"
           link="https://v1michigan.com/"
@@ -105,7 +122,7 @@ const FileBrowser = (props: FileBrowserProps) => {
         <Project
           name="Twitter Ad Blocker"
           link="https://chrome.google.com/webstore/detail/twitter-ad-blocker/dhlbmiajajiiploeagcijnmnfiphgmdc"
-          description="Got tired of all the garbage on Twitter and wrote a Chrome extension to block irrelevant ads, recommendations and news, which has 50+ active users"
+          description="Got tired of all the garbage on Twitter and wrote a Chrome extension to block irrelevant ads, recommendations and news, which has 70+ active users"
         />
         <Project
           name="Plinq"
