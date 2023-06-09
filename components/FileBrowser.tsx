@@ -100,7 +100,7 @@ const FileBrowser = (props: FileBrowserProps) => {
       </Folder>
       <Folder name="projects">
         <Project
-          name="Alexandria"
+          name="The Alexandria Index"
           link="https://alex.macrocosm.so/download"
           description="Working on creating and open-sourcing pipelines and embeddings of the most important datasets out there. Accelerating progress."
         />
