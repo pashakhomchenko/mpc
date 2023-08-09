@@ -24,6 +24,26 @@ interface HomeProps {
 
 const Home = (props: HomeProps) => {
   return (
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+        border: "none",
+        overflow: "hidden",
+      }}
+    >
+      <iframe
+        src="https://pashakhomchenko.notion.site/Pasha-Khomchenko-a392f4c239cc408bbcee6c5b5480c1ca?pvs=4"
+        style={{
+          width: "100%",
+          height: "100%",
+          border: "none",
+          overflow: "hidden",
+        }}
+      ></iframe>
+    </div>
+  );
+  return (
     <div>
       <Head>
         <title>Pasha Khomchenko</title>
