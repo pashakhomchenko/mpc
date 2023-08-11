@@ -1,4 +1,4 @@
-# AKAI MPC2000XL
+# AKAI MPC 2000XL
 
 This is a Next.js + Tailwind CSS sampler (and retired personal website)
 
