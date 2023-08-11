@@ -27,10 +27,7 @@ const Home = (props: HomeProps) => {
     <div>
       <Head>
         <title>Pasha Khomchenko</title>
-        <meta
-          name="Pasha Khomchenko"
-          content="CS @ Umich, learning and having fun"
-        />
+        <meta name="AKAI MPC2000XL" content="legend" />
         <meta
           name="viewport"
           content="width=device-width, height=device-height, initial-scale=1"
