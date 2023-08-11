@@ -20,12 +20,7 @@ const Box = ({ children, last }: BoxProps) => {
 
 const Contact = () => {
   return (
-    <div className="grid grid-cols-5 my-4">
-      <Box>
-        <a href="https://twitter.com/khomie_" target="_blank">
-          <FaTwitter size={30} />
-        </a>
-      </Box>
+    <div className="grid grid-cols-3 my-4">
       <Box>
         <a href="mailto:ahssssap@gmail.com" target="_blank">
           <MdEmail size={30} />
@@ -36,14 +31,9 @@ const Contact = () => {
           <FaSoundcloud size={30} />
         </a>
       </Box>
-      <Box>
+      <Box last>
         <a href="https://github.com/pashakhomchenko" target="_blank">
           <FaGithub size={30} />
-        </a>
-      </Box>
-      <Box last>
-        <a href="https://www.linkedin.com/in/pavel-khomchenko/" target="_blank">
-          <FaLinkedin size={30} />
         </a>
       </Box>
     </div>

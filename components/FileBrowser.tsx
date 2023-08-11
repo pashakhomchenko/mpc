@@ -22,7 +22,7 @@ const FileBrowser = (props: FileBrowserProps) => {
       ref={drop}
       className="font-Michroma text-base grow border-2 border-black py-4 px-2 overflow-scroll"
     >
-      <Folder name="How to use the player">
+      <Folder name="How to use the sampler">
         {props.isDesktop ? (
           <p>
             Click on loops folder bellow, grab any loop and drop it on the grid.
