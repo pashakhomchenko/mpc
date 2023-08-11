@@ -1,6 +1,6 @@
-# Personal website
+# AKAI MPC2000XL
 
-This is a Next.js + Tailwind CSS personal website project
+This is a Next.js + Tailwind CSS sampler (and retired personal website)
 
 ## Getting Started
 
