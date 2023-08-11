@@ -26,7 +26,7 @@ const Home = (props: HomeProps) => {
   return (
     <div>
       <Head>
-        <title>Pasha Khomchenko</title>
+        <title>AKAI MPC2000XL</title>
         <meta name="AKAI MPC2000XL" content="legend" />
         <meta
           name="viewport"
